@@ -1,49 +1,53 @@
 import React,{Component} from "react";
 import {Media} from 'reactstrap';
 import {Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle} from 'reactstrap'
+import DishDetails from "./DishDetailComponent";
 
 class Menu extends Component{
+    
     constructor(props){
         super(props);
 
         this.state = {
           selectedDish: null
         }
-        console.log('Menu Component Constructor is invoked')
+        // console.log('Menu Component Constructor is invoked')
     }
 
-    componentDidMount(){
-        console.log('Menu Component ComponentDidMount is invoked')
-    }
+    // componentDidMount(){
+    //     console.log('Menu Component ComponentDidMount is invoked')
+    // }
 
     onDishSelect(dish){
+        
         this.setState({selectedDish: dish})
+        console.log(this.state.selectedDish)
     }
 
-    renderDish(dish){
-        if (dish != null) {
-            return (
-                <Card>
-                    <CardImg width = "100%" src = {dish.image} alt = {dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>
-                            {dish.description}
-                        </CardText>
-                    </CardBody>
-                </Card>
-            )
-        }
-        else{
-            return(
-                <div></div>
-            )
-        }
-    }
+    // renderDish(dish){
+    //     if (dish != null) {
+    //         return (
+    //             <Card>
+    //                 <CardImg width = "100%" src = {dish.image} alt = {dish.name} />
+    //                 <CardBody>
+    //                     <CardTitle>{dish.name}</CardTitle>
+    //                     <CardText>
+    //                         {dish.description}
+    //                     </CardText>
+    //                 </CardBody>
+    //             </Card>
+    //         )
+    //     }
+    //     else{
+    //         return(
+    //             <div></div>
+    //         )
+    //     }
+    // }
 
 
     render(){
-        console.log('Menu Component Render is invoked')
+        // console.log('Menu Component Render is invoked')
        // console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         const menu = this.props.dishes.map((dish) => {
             return (
@@ -62,11 +66,10 @@ class Menu extends Component{
         return (
             <div className="container">
                 <div className="row">
-                        {menu}
+                    {menu}
+                    <DishDetails details = {this.state.selectedDish}/>
                 </div>
-                <div className="row">
-                    {this.renderDish(this.state.selectedDish)}
-                </div>
+                
             </div>
         );
     }

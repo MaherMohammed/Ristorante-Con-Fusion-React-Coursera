@@ -1,28 +1,22 @@
 import React,{Component} from "react";
-import {Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle} from 'reactstrap'
+import {Card,CardImg,CardText,CardBody,CardTitle} from 'reactstrap'
 import {Media} from 'reactstrap';
 
 class DishDetails extends Component{
-    constructor(props){
-        super(props)
-        // this.state = {
-        //     details:null
-        // }
-    }
-
+   
     render(){
         if (this.props.details != null) {
             const comments = this.props.details.comments.map((commentDetails)=>{
                 return (
                     <div key={commentDetails.id}>
                         <p>{commentDetails.comment}</p>
-                        <p>-- {commentDetails.author}, {commentDetails.date}</p>
+                        <p>-- {commentDetails.author}, {new Intl.DateTimeFormat('en-US',{year: 'numeric',month:'short',day:'2-digit'}).format(new Date(Date.parse(commentDetails.date)))}</p>
                     </div>
                 )
             })
            
             return(
-          
+          <div className="container">
             <div className="row">
               
                 <div className="col-12 col-md-5 m-1">
@@ -43,6 +37,7 @@ class DishDetails extends Component{
                      </Media>
                     
                  </div>
+            </div>
             </div>
             
         );

@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import {Card,CardImg,CardImgOverlay,CardText,CardBody,CardTitle} from 'reactstrap'
-
+import {Media} from 'reactstrap';
 
 class DishDetails extends Component{
     constructor(props){
@@ -11,10 +11,17 @@ class DishDetails extends Component{
     }
 
     render(){
+        // const comments = this.props.details.map((dish) => {
+        //     return(
+        //         <div></div>
+        //     )
+        // })
         if (this.props.details != null) {
             return(
           
-            <div className="col-12 col-md-5 m-1">
+            <div className="row">
+              
+                <div className="col-12 col-md-5 m-1">
                 <Card>
                     <CardImg width = "100%" src = {this.props.details.image} alt = {this.props.details.name} />
                     <CardBody>
@@ -24,6 +31,14 @@ class DishDetails extends Component{
                         </CardText>
                     </CardBody>
                 </Card>
+                </div>
+                 <div className="col-12 col-md-5 m-1">
+                    <Media heading> Comments</Media>
+                 </div>
+                 
+                {/* <Media list>
+                    {comments}
+                </Media> */}
             </div>
             
         );

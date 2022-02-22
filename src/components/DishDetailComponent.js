@@ -11,12 +11,16 @@ class DishDetails extends Component{
     }
 
     render(){
-        // const comments = this.props.details.map((dish) => {
-        //     return(
-        //         <div></div>
-        //     )
-        // })
         if (this.props.details != null) {
+            const comments = this.props.details.comments.map((commentDetails)=>{
+                return (
+                    <div key={commentDetails.id}>
+                        <p>{commentDetails.comment}</p>
+                        <p>-- {commentDetails.author}, {commentDetails.date}</p>
+                    </div>
+                )
+            })
+           
             return(
           
             <div className="row">
@@ -33,12 +37,12 @@ class DishDetails extends Component{
                 </Card>
                 </div>
                  <div className="col-12 col-md-5 m-1">
-                    <Media heading> Comments</Media>
+                     <Media body>
+                        <Media heading> Comments</Media>
+                        {comments}
+                     </Media>
+                    
                  </div>
-                 
-                {/* <Media list>
-                    {comments}
-                </Media> */}
             </div>
             
         );

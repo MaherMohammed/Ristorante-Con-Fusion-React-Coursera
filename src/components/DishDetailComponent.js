@@ -1,7 +1,7 @@
 import React from "react";
-import {Card,CardImg,CardText,CardBody,CardTitle} from 'reactstrap'
+import {Card,CardImg,CardText,CardBody,CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap'
 import {Media} from 'reactstrap';
-
+import {Link} from 'react-router-dom'
 
 function RenderComment({commentDetails}){
     return (
@@ -13,14 +13,14 @@ function RenderComment({commentDetails}){
 }
 
 
-function RenderDish({details}){
+function RenderDish({dish}){
     return(
         <Card>
-            <CardImg width = "100%" src = {details.image} alt = {details.name} />
+            <CardImg width = "100%" src = {dish.image} alt = {dish.name} />
                 <CardBody>
-                    <CardTitle>{details.name}</CardTitle>
+                    <CardTitle>{dish.name}</CardTitle>
                         <CardText>
-                            {details.description}
+                            {dish.description}
                         </CardText>
                 </CardBody>
         </Card>
@@ -30,8 +30,8 @@ function RenderDish({details}){
     const DishDetails = (props)=>{
 
        
-        if (props.details != null) {
-            const comments = props.details.comments.map((commentDetails)=>{
+        if (props.dish != null) {
+            const comments = props.comments.map((commentDetails)=>{
                 return (
                    <RenderComment commentDetails={commentDetails} />
                 )
@@ -39,10 +39,20 @@ function RenderDish({details}){
            
             return(
           <div className="container">
+               <div className="row">
+                            <Breadcrumb>
+                                <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
+                                <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                            </Breadcrumb>
+                            <div className="col-12">
+                                <h3>{props.dish.name}</h3>
+                                <hr />
+                            </div>
+                        </div>
             <div className="row">
               
                 <div className="col-12 col-md-5 m-1">
-                    <RenderDish details={props.details} />
+                    <RenderDish dish={props.dish} />
                 </div>
                  <div className="col-12 col-md-5 m-1">
                      <Media body>

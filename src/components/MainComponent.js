@@ -8,7 +8,7 @@ import Footer from './FooterComponent';
 import {COMMENTS} from '../shared/comments'
 import {LEADERS} from '../shared/leaders'
 import {PROMOTIONS} from '../shared/promotions'
-// import DishDetails from "./DishDetailComponent";
+import DishDetails from "./DishDetailComponent";
 import {Switch,Route,Redirect} from 'react-router-dom'
 
 class Main extends Component {
@@ -32,6 +32,14 @@ render(){
       />
     )
   }
+// this method will get the parameter that is required
+  const DishwithId=({match})=>{
+    return(
+      <DishDetails dish={this.state.dishes.filter((dish)=>dish.id === parseInt(match.params.dishId,10))[0]} 
+      comments={this.state.comments.filter((comment)=>comment.dishId === parseInt(match.params.dishId,10))}
+      />
+    )
+  }
   return (
     
     <div className="App">
@@ -40,6 +48,7 @@ render(){
         <Route path="/home" component={HomePage}/>
         {/* to pass props */}
         <Route exact path="/menu" component={()=> <Menu dishes = {this.state.dishes}/> }/> 
+        <Route path="/menu/:dishId" component={DishwithId} />
         <Route exact path="/contactus" component={()=> <Contact/>} />
         <Redirect to="/home"/> 
         {/* default pass */}

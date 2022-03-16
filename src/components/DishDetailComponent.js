@@ -2,6 +2,7 @@ import React from "react";
 import {Card,CardImg,CardText,CardBody,CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap'
 import {Media} from 'reactstrap';
 import {Link} from 'react-router-dom'
+import CommentForm  from './CommentFormComponent'
 
 function RenderComment({commentDetails}){
     return (
@@ -59,9 +60,10 @@ function RenderDish({dish}){
                         <Media heading> Comments</Media>
                         {comments}
                      </Media>
-                    
+                    <CommentForm/>
                  </div>
             </div>
+            
             </div>
             
         );

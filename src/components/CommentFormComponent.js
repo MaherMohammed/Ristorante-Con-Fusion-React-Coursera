@@ -64,7 +64,7 @@ class CommentForm extends Component{
                             </Col>
                             </Row>
                             <Row className="form-group">
-                                <Col>
+                                <Col> 
                                 <Button type="submit" color="primary">
                                     Submit
                                 </Button>
